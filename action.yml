@@ -1,0 +1,25 @@
+name: 'Blossom Action'
+description: 'Run internal ci-cd pipeline related task'
+inputs:
+  args1:
+    description: 'task argument1'
+    default: '{}'
+    required: false
+  args2:
+    description: 'task argument2'
+    default: '{}'
+    required: false
+  args3:
+    description: 'task argument3'
+    default: '{}'
+    required: false
+branding:
+  icon: 'activity'  
+  color: 'green'
+runs:
+  using: "composite"
+  steps: 
+    - run: chmod +x ${{ github.action_path }}/blossom-action
+      shell: bash
+    - run: ${{ github.action_path }}/blossom-action ${{ inputs.args1 }}
+      shell: bash
